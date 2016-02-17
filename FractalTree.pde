@@ -1,6 +1,9 @@
 private double fractionLength = .8; 
 private int smallestBranch = 10; 
-private double branchAngle = .2;  
+private double branchAngle = .2;
+private color myColor1=0;
+private color myColor2=255;
+private color myColor3=0;
 public void setup() 
 {   
 	size(640,480);    
@@ -9,13 +12,46 @@ public void setup()
 public void draw() 
 {   
 	background(0);   
-	stroke(0,255,0);   
+	stroke(myColor1,myColor2,myColor3);   
 	line(320,480,320,380);   
 	drawBranches(320,380,100,3*Math.PI/2);
 } 
-public void keyPressed()
+public void keyTyped()
 {
-
+	if(key == 'a')
+	{
+		if(fractionLength>.1)
+		fractionLength-=.025;
+	}
+	if(key == 'd')
+	{
+		if(fractionLength <.8)
+		fractionLength+=.025;
+	}
+	if(key=='s')
+	{
+		smallestBranch+=3;
+	}
+	if(key=='w')
+	{
+		if(smallestBranch>10)
+		smallestBranch-=3;
+	}
+	if(key=='q')
+	{
+		branchAngle-=.05;
+	}
+	if(key == 'e')
+	{
+		branchAngle+=.05;
+	}
+	if(key == 'f')
+	{
+		myColor1=(int)(Math.random()*255);
+		myColor2=(int)(Math.random()*255);
+		myColor3=(int)(Math.random()*255);
+	}
+	redraw();
 }
 public void drawBranches(int x,int y, double branchLength, double angle) 
 {   
